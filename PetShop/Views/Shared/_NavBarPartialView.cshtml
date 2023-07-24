@@ -1,0 +1,34 @@
+﻿<!-- Home link -->
+<a class="link" href="@Url.Action("Index", "Home")">Home</a>
+
+<!-- Category dropdown -->
+<div class="dropdown" data-dropdown>
+    <a class="link" data-dropdown-link>Category</a>
+    <div class="dropdown-menu">
+        @foreach (var category in ViewBag.categories)
+        {
+            <a class="link" href="@Url.Action("CategoriesView", "Animals", new { id = category.Id })">@category.Title</a>
+            <br />
+        }
+    </div>
+</div>
+
+
+<a class="link" href="@Url.Action("NewAnimalView", "Administration")">New Animal</a>
+
+
+<div class="dropdown" data-dropdown>
+    @if (User.Identity.IsAuthenticated)
+    {
+       
+        <a class="link" href="@Url.Action("LogOut", "Account")">Log Out</a>
+    }
+    else
+    {
+       
+        <a class="link" data-dropdown-link>Login</a>
+        <div class="dropdown-menu">
+            @await Html.PartialAsync("~/Views/Shared/_LogInPartialView.cshtml", new PetShop.Models.LoginModel())
+        </div>
+    }
+</div>

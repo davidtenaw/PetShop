@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PetShop.Models.Animal>
+@{
+    ViewData["Title"] = "Index3";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+  
+    <din class="row">
+        <div class="col">
+            <h1>Pet Shop</h1>
+            <p>
+                Verify that the background.jpg file exists in the images folder within your project structure.
+                Make sure the path to the image is correct. In this code snippet, I assumed that the images folder is in the root directory of your
+            </p>
+        </div>
+        <div class="col">
+
+            @foreach (var animal in Model)
+            {
+            <div class="card" style="background-image:url(/Images/@animal?.ImageName)">
+                    <h5>@animal?.Name </h5>
+                    <p>
+                        @animal?.Description
+                    </p>
+                    @(animal?.Comments != null ? animal.Comments.Count : 0)
+
+                </div>
+            }
+
+        </div>
+    </din>
+
+
+

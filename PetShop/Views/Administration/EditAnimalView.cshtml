@@ -1,0 +1,46 @@
+﻿@using PetShop.Models
+
+@model PetShop.Models.Animal
+
+
+
+@{
+    ViewData["Title"] = "EditAnimalView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="MainInfo">
+
+    <form method="post" action="/Animals/SuccessView" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name">@Html.DisplayNameFor(m => m.Name):</label>
+            <br />
+            @Html.DisplayFor(m => m.Name)
+            <input asp-for="Name" name="Name" class="form-control" value="@ViewBag.Animals.Name" />
+        </div>
+        <br /><br />
+        <div class="form-group">
+
+            <select asp-for="CategoryId" asp-items="ViewBag.Categories"></select>
+
+            <br />
+        </div>
+        <br /><br />
+        <div class="form-group">
+            <label asp-for="Description">@Html.DisplayNameFor(m => m.Description):</label>
+            <br />
+            @Html.DisplayFor(m => m.Description)
+            <input asp-for="Description" name="Description" class="form-control" value="@ViewBag.Animals.Description" />
+        </div>
+        <br /><br />
+        <div class="form-group">
+            <label asp-for="FileUpload">@Html.DisplayNameFor(m => m.FileUpload):</label>
+            <br />
+            <input asp-for="FileUpload" name="FileUpload" type="file" value="@ViewBag.Animals.ImageName" class="form-control" />
+        </div>
+        <br /><br />
+        <button type="submit" class="form-control">Create</button>
+    </form>
+
+</div>
+
+

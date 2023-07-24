@@ -1,0 +1,21 @@
+﻿@using PetShop.Models;
+@model Animal
+
+
+
+
+<a href="@Url.Action("AnimalDetailsView", "Animals", new { id = Model.Id })">
+
+    <div class="flip-card" style=" background-image url(~/Images/@(Model?.ImageName)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <img src="~/Images/@(Model?.ImageName)" alt="@Model?.Name" style="width:200px;height:230px;">
+            </div>
+            <div class="flip-card-back">
+                <h1>@Model?.Name</h1>
+               @* <p>@Model?.Description</p>*@
+                <p>@Model?.Comments?.Count</p>
+            </div>
+        </div>
+    </div>
+</a>

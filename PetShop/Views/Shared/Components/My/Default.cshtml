@@ -1,0 +1,31 @@
+﻿@using PetShop.Models;
+@model IEnumerable<Animal>
+@{
+    ViewData["Title"] = "Default";
+}
+
+<din class="row">
+    <div class="col">
+
+        <div class="MainInfo">
+            <h1>Pet Shop</h1>
+            <p>
+                Verify that the background.jpg file exists in the images folder within your project structure.
+                Make sure the path to the image is correct. In this code snippet, I assumed that the images folder is in the root directory of your
+            </p>
+        </div>
+
+    </div>
+    <div class="col">
+
+        @foreach (var animal in (List<Animal>)ViewBag.Animals)
+        {
+            <a href="@Url.Action("AnimalDetailsView", "Animals", new { id = animal.Id })" class="card">
+                @await Html.PartialAsync("~/Views/Shared/_CardPartialView.cshtml", animal)
+            </a>
+        }
+
+
+
+    </div>
+</din>

@@ -1,0 +1,24 @@
+﻿@model PetShop.Models.LoginModel
+
+
+    @*asp-controller="Account" asp-action="Register"*@ 
+
+<form asp-controller="Account"
+      asp-action="LogIn"
+    method="post">
+    <div>
+        <label asp-for="UserName">User Name</label>
+        <input type="text" id="UserName" name="UserName" asp-for="UserName" />
+    </div>
+    <div>
+        <label asp-for="Password">Password:</label>
+        <input type="password" id="password" name="password" asp-for="Password" />
+    </div>
+    <div>
+        <input type="submit" value="Login"  />
+        <input type="submit" value="Register"
+            asp-controller="Account" 
+            asp-action="SignIn" 
+            asp-route-user="" />
+    </div>
+</form>

@@ -1,0 +1,84 @@
+﻿@using PetShop.Models;
+@model IEnumerable<Comment>
+
+@{
+    ViewData["Title"] = "AnimalDetailsView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+        <div class="MainInfo">
+            <div>
+            <img class="DetailImg" src="~/Images/@(ViewBag.Animal?.ImageName)" alt="@(ViewBag.Animal?.Name)" style="width:230px;height:200px; border-radius:10px">
+            </div>
+        <h5>@(ViewBag.Animal?.Name)</h5>
+            <di>
+            <p>@(ViewBag.Animal?.Description)</p>
+            </di>
+        <button type="submit" asp-for="Edit" class="btn btn-primary" id="EditButton" data-custom-attribute="@(ViewBag.Animal?.Id)" formaction="/Animals/EditAnimalView">
+
+            <a class="link" href="@Url.Action("EditAnimalView", "Administration", new { id = @ViewBag.Animal?.Id})">Mammals</a>
+        
+        
+        </button>
+        </div>
+        <div class="SecondInfo">
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h1>Comments:</h1>
+            @foreach (var comment in Model)
+            {
+                <div class="dropdown" data-dropdown>
+                    @if (comment.Edit)
+                    {
+                        <form method="post" asp-controller="Animals" asp-action="SaveCommentEdit" enctype="multipart/form-data">
+                            <div class="link" data-dropdown-link>
+                                <input asp-for="@comment.AnimalId" type="hidden" name="AnimalId" value="@comment.AnimalId" />
+                                <input asp-for="@comment.Id" type="hidden" name="Id" value="@comment.Id" />
+                                <input asp-for="@comment.Description" name="Description" value="@comment.Description" class="form-control" />
+
+                                <div class="dropdown-menu1">
+                                    <button type="submit" class="link">Save</button>
+                                    <a class="link" href="@Url.Action("CancelCommentEdit", "Animals", new {  id = comment.Id})">Cancel</a>
+                                </div>
+                            </div>
+                            <br>
+                        </form>
+
+                    }
+                    else
+                    {
+                        <a class="link" data-dropdown-link>@comment.Description</a>
+                        <div class="dropdown-menu">
+                            <a class="link" href="@Url.Action("Comments", "Animals", new { id = comment.Id, delet = false })">Edit</a>
+                            <a class="link" href="@Url.Action("Comments", "Animals", new { id = comment.Id, delet = true})">Delete</a>
+                        </div>
+                        <br>
+                    }
+                </div>
+            }
+            <br>
+            @using (Html.BeginForm("SaveComment", "Animals", FormMethod.Post))
+            {
+                <input type="hidden" name="AnimalId" value="@ViewBag.Animal.Id" />
+                <input type="text" name="Description" value="" class="form-control" />
+                <button type="submit">Submit</button>
+            }
+
+
+        }
+        else
+        {
+            @foreach (var comment in ViewBag.Animal.Comments)
+            {
+                <a class="link" data-dropdown-link>@comment.Description</a>
+                <br />
+            }
+        }
+        </div> 
+</div>
+
+
+
+

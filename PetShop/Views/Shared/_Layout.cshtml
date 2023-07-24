@@ -1,0 +1,38 @@
+﻿
+
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="~/scripts/jquery.js"></script>
+	<link href="~/css/style.css" rel="stylesheet" />
+
+</head>
+<body >
+
+    <div class="Header">
+        @await Html.PartialAsync("~/Views/Shared/_NavBarPartialView.cshtml")@*
+        @await Html.PartialAsync("~/Views/Shared/_LogInPartialView.cshtml", new PetShop.Models.LoginModel())*@
+
+        
+    </div>
+    <div class="web">   
+        @RenderBody()
+    </div>
+    <script src="~/scripts/javascript.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/scripts/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+
+
+</html>
+
