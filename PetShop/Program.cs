@@ -9,6 +9,10 @@ using PetShop.Services;
 
 internal class Program
 {
+    /// <summary>
+    /// ///////////////////mlmlm
+    /// </summary>
+    /// <param name="args"></param>
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
